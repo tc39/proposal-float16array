@@ -10,6 +10,8 @@ Champions: Leo Balter
 
 This proposal is at Stage 1 of [The TC39 Process](https://tc39.es/process-document/).
 
+Spec text is available [here](https://tc39.es/proposal-float16array/).
+
 ## Motivation
 
 - Explicit request from the Color on the Web CG, for [their use case](https://github.com/w3c/ColorWeb-CG/blob/main/canvas_float.md) with float-backed canvases.
