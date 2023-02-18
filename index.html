@@ -1,0 +1,303 @@
+<!doctype html>
+<head><meta charset="utf-8">
+<title>Float16Array</title><script src="ecmarkup.js?cache=nN77hjYK" defer=""></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/base16/solarized-light.min.css"><link rel="stylesheet" href="ecmarkup.css"></head><body><div id="shortcuts-help">
+<ul>
+  <li><span>Toggle shortcuts help</span><code>?</code></li>
+  <li><span>Toggle "can call user code" annotations</span><code>u</code></li>
+
+  <li><span>Jump to search box</span><code>/</code></li>
+</ul></div><div id="menu-toggle"><svg xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%; stroke:currentColor" viewBox="0 0 120 120">
+      <title>Menu</title>
+      <path stroke-width="10" stroke-linecap="round" d="M30,60 h60  M30,30 m0,5 h60  M30,90 m0,-5 h60"></path>
+    </svg></div><div id="menu-spacer" class="menu-spacer"></div><div id="menu"><div id="menu-search"><input type="text" id="menu-search-box" placeholder="Search..."><div id="menu-search-results" class="inactive"></div></div><div id="menu-pins"><div class="menu-pane-header">Pins</div><ul id="menu-pins-list"></ul></div><div class="menu-pane-header">Table of Contents</div><div id="menu-toc"><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-proposal-intro" title="Introduction"><span class="secnum">1</span> Introduction</a></li><li><span class="item-toggle">◢</span><a href="#sec-constructor-properties-of-the-global-object" title="Constructor Properties of the Global Object"><span class="secnum">2</span> Constructor Properties of the Global Object</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-float16array" title="Float16Array ( . . . )"><span class="secnum">2.1</span> <ins>Float16Array ( . . . )</ins></a></li></ol></li><li><span class="item-toggle-none"></span><a href="#sec-typedarray-objects" title="TypedArray Objects"><span class="secnum">3</span> TypedArray Objects</a></li><li><span class="item-toggle-none"></span><a href="#sec-rawbytestonumeric" title="RawBytesToNumeric ( type, rawBytes, isLittleEndian )"><span class="secnum">4</span> RawBytesToNumeric ( <var>type</var>, <var>rawBytes</var>, <var>isLittleEndian</var> )</a></li><li><span class="item-toggle-none"></span><a href="#sec-numerictorawbytes" title="NumericToRawBytes ( type, value, isLittleEndian )"><span class="secnum">5</span> NumericToRawBytes ( <var>type</var>, <var>value</var>, <var>isLittleEndian</var> )</a></li><li><span class="item-toggle">◢</span><a href="#sec-properties-of-the-dataview-prototype-object" title="Properties of the DataView Prototype Object"><span class="secnum">6</span> Properties of the DataView Prototype Object</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-dataview.prototype.getfloat16" title="DataView.prototype.getFloat16 ( byteOffset [ , littleEndian ] )"><span class="secnum">6.1</span> <ins>DataView.prototype.getFloat16 ( <var>byteOffset</var> [ , <var>littleEndian</var> ] )</ins></a></li><li><span class="item-toggle-none"></span><a href="#sec-dataview.prototype.setfloat16" title="DataView.prototype.setFloat16 ( byteOffset, value [ , littleEndian ] )"><span class="secnum">6.2</span> <ins>DataView.prototype.setFloat16 ( <var>byteOffset</var>, <var>value</var> [ , <var>littleEndian</var> ] )</ins></a></li></ol></li></ol></div></div><div id="spec-container"><h1 class="version">Stage 1 Draft / February 18, 2023</h1><h1 class="title">Float16Array</h1>
+
+<div id="metadata-block">
+  <h1>Contributing to this Proposal</h1>
+  <p>You can discuss this proposal [on GitHub](https://github.com/tc39/proposal-float16array).</p>
+</div>
+
+<emu-clause id="sec-proposal-intro">
+  <h1><span class="secnum">1</span> Introduction</h1>
+  <p>This proposal adds a new kind of TypedArray. TypedArrays are specified in a slightly different way from the rest of the standard library, so the specification for this proposal consists of a surprisingly small change.</p>
+</emu-clause>
+
+<emu-clause id="sec-constructor-properties-of-the-global-object">
+  <h1><span class="secnum">2</span> Constructor Properties of the Global Object</h1>
+  <p>The following subclause is inserted.</p>
+
+  <emu-clause id="sec-float16array">
+    <h1><span class="secnum">2.1</span> <ins>Float16Array ( . . . )</ins></h1>
+    <p>See <emu-xref href="#sec-typedarray-constructors"><a href="https://tc39.es/ecma262/#sec-typedarray-constructors">23.2.5</a></emu-xref>.</p>
+  </emu-clause>
+</emu-clause>
+
+<emu-clause id="sec-typedarray-objects">
+  <h1><span class="secnum">3</span> TypedArray Objects</h1>
+  <p>The table below is modified by the addition of a row for float16.</p>
+  <emu-table id="table-the-typedarray-constructors" caption="The TypedArray Constructors"><figure><figcaption>Table 1: The TypedArray <emu-xref href="#constructor"><a href="https://tc39.es/ecma262/#constructor">Constructors</a></emu-xref></figcaption>
+    <table>
+      <tbody><tr>
+        <th>
+          <emu-xref href="#constructor"><a href="https://tc39.es/ecma262/#constructor">Constructor</a></emu-xref> Name and Intrinsic
+        </th>
+        <th>
+          Element Type
+        </th>
+        <th>
+          Element Size
+        </th>
+        <th>
+          Conversion Operation
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+      <tr>
+        <td>
+          Int8Array<br>
+          <dfn>%Int8Array%</dfn>
+        </td>
+        <td>
+          <emu-const>Int8</emu-const>
+        </td>
+        <td>
+          1
+        </td>
+        <td>
+          <emu-xref aoid="ToInt8"><a href="https://tc39.es/ecma262/#sec-toint8">ToInt8</a></emu-xref>
+        </td>
+        <td>
+          8-bit two's complement signed <emu-xref href="#integer"><a href="https://tc39.es/ecma262/#integer">integer</a></emu-xref>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Uint8Array<br>
+          <dfn>%Uint8Array%</dfn>
+        </td>
+        <td>
+          <emu-const>Uint8</emu-const>
+        </td>
+        <td>
+          1
+        </td>
+        <td>
+          <emu-xref aoid="ToUint8"><a href="https://tc39.es/ecma262/#sec-touint8">ToUint8</a></emu-xref>
+        </td>
+        <td>
+          8-bit unsigned <emu-xref href="#integer"><a href="https://tc39.es/ecma262/#integer">integer</a></emu-xref>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Uint8ClampedArray<br>
+          <dfn>%Uint8ClampedArray%</dfn>
+        </td>
+        <td>
+          <emu-const>Uint8C</emu-const>
+        </td>
+        <td>
+          1
+        </td>
+        <td>
+          <emu-xref aoid="ToUint8Clamp"><a href="https://tc39.es/ecma262/#sec-touint8clamp">ToUint8Clamp</a></emu-xref>
+        </td>
+        <td>
+          8-bit unsigned <emu-xref href="#integer"><a href="https://tc39.es/ecma262/#integer">integer</a></emu-xref> (clamped conversion)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Int16Array<br>
+          <dfn>%Int16Array%</dfn>
+        </td>
+        <td>
+          <emu-const>Int16</emu-const>
+        </td>
+        <td>
+          2
+        </td>
+        <td>
+          <emu-xref aoid="ToInt16"><a href="https://tc39.es/ecma262/#sec-toint16">ToInt16</a></emu-xref>
+        </td>
+        <td>
+          16-bit two's complement signed <emu-xref href="#integer"><a href="https://tc39.es/ecma262/#integer">integer</a></emu-xref>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Uint16Array<br>
+          <dfn>%Uint16Array%</dfn>
+        </td>
+        <td>
+          <emu-const>Uint16</emu-const>
+        </td>
+        <td>
+          2
+        </td>
+        <td>
+          <emu-xref aoid="ToUint16"><a href="https://tc39.es/ecma262/#sec-touint16">ToUint16</a></emu-xref>
+        </td>
+        <td>
+          16-bit unsigned <emu-xref href="#integer"><a href="https://tc39.es/ecma262/#integer">integer</a></emu-xref>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Int32Array<br>
+          <dfn>%Int32Array%</dfn>
+        </td>
+        <td>
+          <emu-const>Int32</emu-const>
+        </td>
+        <td>
+          4
+        </td>
+        <td>
+          <emu-xref aoid="ToInt32"><a href="https://tc39.es/ecma262/#sec-toint32">ToInt32</a></emu-xref>
+        </td>
+        <td>
+          32-bit two's complement signed <emu-xref href="#integer"><a href="https://tc39.es/ecma262/#integer">integer</a></emu-xref>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Uint32Array<br>
+          <dfn>%Uint32Array%</dfn>
+        </td>
+        <td>
+          <emu-const>Uint32</emu-const>
+        </td>
+        <td>
+          4
+        </td>
+        <td>
+          <emu-xref aoid="ToUint32"><a href="https://tc39.es/ecma262/#sec-touint32">ToUint32</a></emu-xref>
+        </td>
+        <td>
+          32-bit unsigned <emu-xref href="#integer"><a href="https://tc39.es/ecma262/#integer">integer</a></emu-xref>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          BigInt64Array<br>
+          <dfn>%BigInt64Array%</dfn>
+        </td>
+        <td>
+          <emu-const>BigInt64</emu-const>
+        </td>
+        <td>
+          8
+        </td>
+        <td>
+          <emu-xref aoid="ToBigInt64"><a href="https://tc39.es/ecma262/#sec-tobigint64">ToBigInt64</a></emu-xref>
+        </td>
+        <td>
+          64-bit two's complement signed <emu-xref href="#integer"><a href="https://tc39.es/ecma262/#integer">integer</a></emu-xref>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          BigUint64Array<br>
+          <dfn>%BigUint64Array%</dfn>
+        </td>
+        <td>
+          <emu-const>BigUint64</emu-const>
+        </td>
+        <td>
+          8
+        </td>
+        <td>
+          <emu-xref aoid="ToBigUint64"><a href="https://tc39.es/ecma262/#sec-tobiguint64">ToBigUint64</a></emu-xref>
+        </td>
+        <td>
+          64-bit unsigned <emu-xref href="#integer"><a href="https://tc39.es/ecma262/#integer">integer</a></emu-xref>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ins>Float16Array<br>
+            <dfn>%Float16Array%</dfn></ins>
+        </td>
+        <td>
+          <ins><emu-const>Float16</emu-const></ins>
+        </td>
+        <td>
+          2
+        </td>
+        <td>
+        </td>
+        <td>
+          <ins>16-bit IEEE floating point</ins>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Float32Array<br>
+          <dfn>%Float32Array%</dfn>
+        </td>
+        <td>
+          <emu-const>Float32</emu-const>
+        </td>
+        <td>
+          4
+        </td>
+        <td>
+        </td>
+        <td>
+          32-bit IEEE floating point
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Float64Array<br>
+          <dfn>%Float64Array%</dfn>
+        </td>
+        <td>
+          <emu-const>Float64</emu-const>
+        </td>
+        <td>
+          8
+        </td>
+        <td>
+        </td>
+        <td>
+          64-bit IEEE floating point
+        </td>
+      </tr>
+    </tbody></table>
+  </figure></emu-table>
+</emu-clause>
+
+<emu-clause id="sec-rawbytestonumeric" type="abstract operation" oldids="sec-rawbytestonumber" aoid="RawBytesToNumeric"><span id="sec-rawbytestonumber"></span>
+  <h1><span class="secnum">4</span> RawBytesToNumeric ( <var>type</var>, <var>rawBytes</var>, <var>isLittleEndian</var> )</h1>
+  <p>The abstract operation RawBytesToNumeric takes arguments <var>type</var> (a <emu-xref href="#sec-typedarray-objects" id="_ref_3"><a href="#sec-typedarray-objects">TypedArray element type</a></emu-xref>), <var>rawBytes</var> (a <emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">List</a></emu-xref> of <emu-xref href="#sec-data-blocks"><a href="https://tc39.es/ecma262/#sec-data-blocks">byte values</a></emu-xref>), and <var>isLittleEndian</var> (a Boolean) and returns a Number or a BigInt.</p>
+  <p>The algorithm below is modified by the addition of a case for <emu-const>Float16</emu-const>.</p>
+  <emu-alg><ol><li>Let <var>elementSize</var> be the Element Size value specified in <emu-xref href="#table-the-typedarray-constructors" id="_ref_0"><a href="#table-the-typedarray-constructors">Table 1</a></emu-xref> for Element Type <var>type</var>.</li><li>If <var>isLittleEndian</var> is <emu-val>false</emu-val>, reverse the order of the elements of <var>rawBytes</var>.</li><li><ins>If <var>type</var> is <emu-const>Float16</emu-const>, then</ins><ol><li><ins>Let <var>value</var> be the byte elements of <var>rawBytes</var> concatenated and interpreted as a little-endian bit string encoding of an <emu-xref href="#sec-bibliography"><a href="https://tc39.es/ecma262/#sec-bibliography">IEEE 754-2019</a></emu-xref> binary16 value.</ins></li><li><ins>If <var>value</var> is an <emu-xref href="#sec-bibliography"><a href="https://tc39.es/ecma262/#sec-bibliography">IEEE 754-2019</a></emu-xref> binary16 NaN value, return the <emu-val>NaN</emu-val> Number value.</ins></li><li><ins>Return the Number value that corresponds to <var>value</var>.</ins></li></ol></li><li>If <var>type</var> is <emu-const>Float32</emu-const>, then<ol><li>Let <var>value</var> be the byte elements of <var>rawBytes</var> concatenated and interpreted as a little-endian bit string encoding of an <emu-xref href="#sec-bibliography"><a href="https://tc39.es/ecma262/#sec-bibliography">IEEE 754-2019</a></emu-xref> binary32 value.</li><li>If <var>value</var> is an <emu-xref href="#sec-bibliography"><a href="https://tc39.es/ecma262/#sec-bibliography">IEEE 754-2019</a></emu-xref> binary32 NaN value, return the <emu-val>NaN</emu-val> Number value.</li><li>Return the Number value that corresponds to <var>value</var>.</li></ol></li><li>If <var>type</var> is <emu-const>Float64</emu-const>, then<ol><li>Let <var>value</var> be the byte elements of <var>rawBytes</var> concatenated and interpreted as a little-endian bit string encoding of an <emu-xref href="#sec-bibliography"><a href="https://tc39.es/ecma262/#sec-bibliography">IEEE 754-2019</a></emu-xref> binary64 value.</li><li>If <var>value</var> is an <emu-xref href="#sec-bibliography"><a href="https://tc39.es/ecma262/#sec-bibliography">IEEE 754-2019</a></emu-xref> binary64 NaN value, return the <emu-val>NaN</emu-val> Number value.</li><li>Return the Number value that corresponds to <var>value</var>.</li></ol></li><li>If <emu-xref aoid="IsUnsignedElementType"><a href="https://tc39.es/ecma262/#sec-isunsignedelementtype">IsUnsignedElementType</a></emu-xref>(<var>type</var>) is <emu-val>true</emu-val>, then<ol><li>Let <var>intValue</var> be the byte elements of <var>rawBytes</var> concatenated and interpreted as a bit string encoding of an unsigned little-endian binary number.</li></ol></li><li>Else,<ol><li>Let <var>intValue</var> be the byte elements of <var>rawBytes</var> concatenated and interpreted as a bit string encoding of a binary little-endian two's complement number of bit length <var>elementSize</var> × 8.</li></ol></li><li>If <emu-xref aoid="IsBigIntElementType"><a href="https://tc39.es/ecma262/#sec-isbigintelementtype">IsBigIntElementType</a></emu-xref>(<var>type</var>) is <emu-val>true</emu-val>, return the BigInt value that corresponds to <var>intValue</var>.</li><li>Otherwise, return the Number value that corresponds to <var>intValue</var>.</li></ol></emu-alg>
+</emu-clause>
+
+<emu-clause id="sec-numerictorawbytes" type="abstract operation" oldids="sec-numbertorawbytes" aoid="NumericToRawBytes"><span id="sec-numbertorawbytes"></span>
+  <h1><span class="secnum">5</span> NumericToRawBytes ( <var>type</var>, <var>value</var>, <var>isLittleEndian</var> )</h1>
+  <p>The abstract operation NumericToRawBytes takes arguments <var>type</var> (a <emu-xref href="#sec-typedarray-objects" id="_ref_4"><a href="#sec-typedarray-objects">TypedArray element type</a></emu-xref>), <var>value</var> (a Number or a BigInt), and <var>isLittleEndian</var> (a Boolean) and returns a <emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">List</a></emu-xref> of <emu-xref href="#sec-data-blocks"><a href="https://tc39.es/ecma262/#sec-data-blocks">byte values</a></emu-xref>.</p>
+  <p>The algorithm below is modified by the addition of a case for <emu-const>Float16</emu-const>.</p>
+  <emu-alg><ol><li><ins>If <var>type</var> is <emu-const>Float16</emu-const>, then</ins><ol><li><ins>Let <var>rawBytes</var> be a <emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">List</a></emu-xref> whose elements are the 4 bytes that are the result of converting <var>value</var> to <emu-xref href="#sec-bibliography"><a href="https://tc39.es/ecma262/#sec-bibliography">IEEE 754-2019</a></emu-xref> binary16 format using roundTiesToEven mode. The bytes are arranged in little endian order. If <var>value</var> is <emu-val>NaN</emu-val>, <var>rawBytes</var> may be set to any implementation chosen <emu-xref href="#sec-bibliography"><a href="https://tc39.es/ecma262/#sec-bibliography">IEEE 754-2019</a></emu-xref> binary16 format Not-a-Number encoding. An implementation must always choose the same encoding for each implementation distinguishable <emu-val>NaN</emu-val> value.</ins></li></ol></li><li>Else if <var>type</var> is <emu-const>Float32</emu-const>, then<ol><li>Let <var>rawBytes</var> be a <emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">List</a></emu-xref> whose elements are the 4 bytes that are the result of converting <var>value</var> to <emu-xref href="#sec-bibliography"><a href="https://tc39.es/ecma262/#sec-bibliography">IEEE 754-2019</a></emu-xref> binary32 format using roundTiesToEven mode. The bytes are arranged in little endian order. If <var>value</var> is <emu-val>NaN</emu-val>, <var>rawBytes</var> may be set to any implementation chosen <emu-xref href="#sec-bibliography"><a href="https://tc39.es/ecma262/#sec-bibliography">IEEE 754-2019</a></emu-xref> binary32 format Not-a-Number encoding. An implementation must always choose the same encoding for each implementation distinguishable <emu-val>NaN</emu-val> value.</li></ol></li><li>Else if <var>type</var> is <emu-const>Float64</emu-const>, then<ol><li>Let <var>rawBytes</var> be a <emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">List</a></emu-xref> whose elements are the 8 bytes that are the <emu-xref href="#sec-bibliography"><a href="https://tc39.es/ecma262/#sec-bibliography">IEEE 754-2019</a></emu-xref> binary64 format encoding of <var>value</var>. The bytes are arranged in little endian order. If <var>value</var> is <emu-val>NaN</emu-val>, <var>rawBytes</var> may be set to any implementation chosen <emu-xref href="#sec-bibliography"><a href="https://tc39.es/ecma262/#sec-bibliography">IEEE 754-2019</a></emu-xref> binary64 format Not-a-Number encoding. An implementation must always choose the same encoding for each implementation distinguishable <emu-val>NaN</emu-val> value.</li></ol></li><li>Else,<ol><li>Let <var>n</var> be the Element Size value specified in <emu-xref href="#table-the-typedarray-constructors" id="_ref_1"><a href="#table-the-typedarray-constructors">Table 1</a></emu-xref> for Element Type <var>type</var>.</li><li>Let <var>convOp</var> be the abstract operation named in the Conversion Operation column in <emu-xref href="#table-the-typedarray-constructors" id="_ref_2"><a href="#table-the-typedarray-constructors">Table 1</a></emu-xref> for Element Type <var>type</var>.</li><li>Let <var>intValue</var> be <emu-xref aoid="ℝ"><a href="https://tc39.es/ecma262/#ℝ">ℝ</a></emu-xref>(<var>convOp</var>(<var>value</var>)).</li><li>If <var>intValue</var> ≥ 0, then<ol><li>Let <var>rawBytes</var> be a <emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">List</a></emu-xref> whose elements are the <var>n</var>-byte binary encoding of <var>intValue</var>. The bytes are ordered in little endian order.</li></ol></li><li>Else,<ol><li>Let <var>rawBytes</var> be a <emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">List</a></emu-xref> whose elements are the <var>n</var>-byte binary two's complement encoding of <var>intValue</var>. The bytes are ordered in little endian order.</li></ol></li></ol></li><li>If <var>isLittleEndian</var> is <emu-val>false</emu-val>, reverse the order of the elements of <var>rawBytes</var>.</li><li>Return <var>rawBytes</var>.</li></ol></emu-alg>
+</emu-clause>
+
+<emu-clause id="sec-properties-of-the-dataview-prototype-object">
+  <h1><span class="secnum">6</span> Properties of the DataView Prototype Object</h1>
+  <p>The following two subclauses are inserted.</p>
+
+  <emu-clause id="sec-dataview.prototype.getfloat16">
+    <h1><span class="secnum">6.1</span> <ins>DataView.prototype.getFloat16 ( <var>byteOffset</var> [ , <var>littleEndian</var> ] )</ins></h1>
+    <p>This method performs the following steps when called:</p>
+    <emu-alg><ol><li>Let <var>v</var> be the <emu-val>this</emu-val> value.</li><li>If <var>littleEndian</var> is not present, set <var>littleEndian</var> to <emu-val>false</emu-val>.</li><li>Return ?&nbsp;<emu-xref aoid="GetViewValue"><a href="https://tc39.es/ecma262/#sec-getviewvalue">GetViewValue</a></emu-xref>(<var>v</var>, <var>byteOffset</var>, <var>littleEndian</var>, <emu-const>Float16</emu-const>).</li></ol></emu-alg>
+  </emu-clause>
+
+  <emu-clause id="sec-dataview.prototype.setfloat16">
+    <h1><span class="secnum">6.2</span> <ins>DataView.prototype.setFloat16 ( <var>byteOffset</var>, <var>value</var> [ , <var>littleEndian</var> ] )</ins></h1>
+    <p>This method performs the following steps when called:</p>
+    <emu-alg><ol><li>Let <var>v</var> be the <emu-val>this</emu-val> value.</li><li>If <var>littleEndian</var> is not present, set <var>littleEndian</var> to <emu-val>false</emu-val>.</li><li>Return ?&nbsp;<emu-xref aoid="SetViewValue"><a href="https://tc39.es/ecma262/#sec-setviewvalue">SetViewValue</a></emu-xref>(<var>v</var>, <var>byteOffset</var>, <var>littleEndian</var>, <emu-const>Float16</emu-const>, <var>value</var>).</li></ol></emu-alg>
+  </emu-clause>
+</emu-clause>
+</div></body>
