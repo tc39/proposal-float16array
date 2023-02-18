@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<pre class="metadata">
+title: Float16Array
+status: proposal
+stage: 1
+copyright: false
+contributors: Kevin Gibbons
+</pre>
+
+<div id="metadata-block">
+  <h1>Contributing to this Proposal</h1>
+  <p>TODO link to GitHub repo when it is stable</p>
+</div>
+
+<emu-clause id="sec-proposal-intro">
+  <h1>Introduction</h1>
+  <p>This proposal adds a new kind of TypedArray. TypedArrays are specified in a slightly different way from the rest of the standard library, so the specification for this proposal consists of a surprisingly small change.</p>
+</emu-clause>
+
+<emu-clause id="sec-constructor-properties-of-the-global-object">
+  <h1>Constructor Properties of the Global Object</h1>
+  <p>The following subclause is inserted.</p>
+
+  <emu-clause id="sec-float16array">
+    <h1><ins>Float16Array ( . . . )</ins></h1>
+    <p>See <emu-xref href="#sec-typedarray-constructors"></emu-xref>.</p>
+  </emu-clause>
+</emu-clause>
+
+<emu-clause id="sec-typedarray-objects">
+  <h1>TypedArray Objects</h1>
+  <p>The table below is modified by the addition of a row for float16.</p>
+  <emu-table id="table-the-typedarray-constructors" caption="The TypedArray Constructors">
+    <table>
+      <tr>
+        <th>
+          Constructor Name and Intrinsic
+        </th>
+        <th>
+          Element Type
+        </th>
+        <th>
+          Element Size
+        </th>
+        <th>
+          Conversion Operation
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+      <tr>
+        <td>
+          Int8Array<br>
+          <dfn>%Int8Array%</dfn>
+        </td>
+        <td>
+          ~Int8~
+        </td>
+        <td>
+          1
+        </td>
+        <td>
+          ToInt8
+        </td>
+        <td>
+          8-bit two's complement signed integer
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Uint8Array<br>
+          <dfn>%Uint8Array%</dfn>
+        </td>
+        <td>
+          ~Uint8~
+        </td>
+        <td>
+          1
+        </td>
+        <td>
+          ToUint8
+        </td>
+        <td>
+          8-bit unsigned integer
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Uint8ClampedArray<br>
+          <dfn>%Uint8ClampedArray%</dfn>
+        </td>
+        <td>
+          ~Uint8C~
+        </td>
+        <td>
+          1
+        </td>
+        <td>
+          ToUint8Clamp
+        </td>
+        <td>
+          8-bit unsigned integer (clamped conversion)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Int16Array<br>
+          <dfn>%Int16Array%</dfn>
+        </td>
+        <td>
+          ~Int16~
+        </td>
+        <td>
+          2
+        </td>
+        <td>
+          ToInt16
+        </td>
+        <td>
+          16-bit two's complement signed integer
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Uint16Array<br>
+          <dfn>%Uint16Array%</dfn>
+        </td>
+        <td>
+          ~Uint16~
+        </td>
+        <td>
+          2
+        </td>
+        <td>
+          ToUint16
+        </td>
+        <td>
+          16-bit unsigned integer
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Int32Array<br>
+          <dfn>%Int32Array%</dfn>
+        </td>
+        <td>
+          ~Int32~
+        </td>
+        <td>
+          4
+        </td>
+        <td>
+          ToInt32
+        </td>
+        <td>
+          32-bit two's complement signed integer
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Uint32Array<br>
+          <dfn>%Uint32Array%</dfn>
+        </td>
+        <td>
+          ~Uint32~
+        </td>
+        <td>
+          4
+        </td>
+        <td>
+          ToUint32
+        </td>
+        <td>
+          32-bit unsigned integer
+        </td>
+      </tr>
+      <tr>
+        <td>
+          BigInt64Array<br>
+          <dfn>%BigInt64Array%</dfn>
+        </td>
+        <td>
+          ~BigInt64~
+        </td>
+        <td>
+          8
+        </td>
+        <td>
+          ToBigInt64
+        </td>
+        <td>
+          64-bit two's complement signed integer
+        </td>
+      </tr>
+      <tr>
+        <td>
+          BigUint64Array<br>
+          <dfn>%BigUint64Array%</dfn>
+        </td>
+        <td>
+          ~BigUint64~
+        </td>
+        <td>
+          8
+        </td>
+        <td>
+          ToBigUint64
+        </td>
+        <td>
+          64-bit unsigned integer
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ins>Float16Array<br>
+            <dfn>%Float16Array%</dfn></ins>
+        </td>
+        <td>
+          <ins>~Float16~</ins>
+        </td>
+        <td>
+          2
+        </td>
+        <td>
+        </td>
+        <td>
+          <ins>16-bit IEEE floating point</ins>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Float32Array<br>
+          <dfn>%Float32Array%</dfn>
+        </td>
+        <td>
+          ~Float32~
+        </td>
+        <td>
+          4
+        </td>
+        <td>
+        </td>
+        <td>
+          32-bit IEEE floating point
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Float64Array<br>
+          <dfn>%Float64Array%</dfn>
+        </td>
+        <td>
+          ~Float64~
+        </td>
+        <td>
+          8
+        </td>
+        <td>
+        </td>
+        <td>
+          64-bit IEEE floating point
+        </td>
+      </tr>
+    </table>
+  </emu-table>
+</emu-clause>
+
+<emu-clause id="sec-rawbytestonumeric" type="abstract operation" oldids="sec-rawbytestonumber">
+  <h1>
+    RawBytesToNumeric (
+      _type_: a TypedArray element type,
+      _rawBytes_: a List of byte values,
+      _isLittleEndian_: a Boolean,
+    ): a Number or a BigInt
+  </h1>
+  <dl class="header">
+  </dl>
+  <p>The algorithm below is modified by the addition of a case for ~Float16~.</p>
+  <emu-alg>
+    1. Let _elementSize_ be the Element Size value specified in <emu-xref href="#table-the-typedarray-constructors"></emu-xref> for Element Type _type_.
+    1. If _isLittleEndian_ is *false*, reverse the order of the elements of _rawBytes_.
+    1. <ins>If _type_ is ~Float16~, then</ins>
+      1. <ins>Let _value_ be the byte elements of _rawBytes_ concatenated and interpreted as a little-endian bit string encoding of an IEEE 754-2019 binary16 value.</ins>
+      1. <ins>If _value_ is an IEEE 754-2019 binary16 NaN value, return the *NaN* Number value.</ins>
+      1. <ins>Return the Number value that corresponds to _value_.</ins>
+    1. If _type_ is ~Float32~, then
+      1. Let _value_ be the byte elements of _rawBytes_ concatenated and interpreted as a little-endian bit string encoding of an IEEE 754-2019 binary32 value.
+      1. If _value_ is an IEEE 754-2019 binary32 NaN value, return the *NaN* Number value.
+      1. Return the Number value that corresponds to _value_.
+    1. If _type_ is ~Float64~, then
+      1. Let _value_ be the byte elements of _rawBytes_ concatenated and interpreted as a little-endian bit string encoding of an IEEE 754-2019 binary64 value.
+      1. If _value_ is an IEEE 754-2019 binary64 NaN value, return the *NaN* Number value.
+      1. Return the Number value that corresponds to _value_.
+    1. If IsUnsignedElementType(_type_) is *true*, then
+      1. Let _intValue_ be the byte elements of _rawBytes_ concatenated and interpreted as a bit string encoding of an unsigned little-endian binary number.
+    1. Else,
+      1. Let _intValue_ be the byte elements of _rawBytes_ concatenated and interpreted as a bit string encoding of a binary little-endian two's complement number of bit length _elementSize_ × 8.
+    1. If IsBigIntElementType(_type_) is *true*, return the BigInt value that corresponds to _intValue_.
+    1. Otherwise, return the Number value that corresponds to _intValue_.
+  </emu-alg>
+</emu-clause>
+
+<emu-clause id="sec-numerictorawbytes" type="abstract operation" oldids="sec-numbertorawbytes">
+  <h1>
+    NumericToRawBytes (
+      _type_: a TypedArray element type,
+      _value_: a Number or a BigInt,
+      _isLittleEndian_: a Boolean,
+    ): a List of byte values
+  </h1>
+  <dl class="header">
+  </dl>
+  <p>The algorithm below is modified by the addition of a case for ~Float16~.</p>
+  <emu-alg>
+    1. <ins>If _type_ is ~Float16~, then</ins>
+      1. <ins>Let _rawBytes_ be a List whose elements are the 4 bytes that are the result of converting _value_ to IEEE 754-2019 binary16 format using roundTiesToEven mode. The bytes are arranged in little endian order. If _value_ is *NaN*, _rawBytes_ may be set to any implementation chosen IEEE 754-2019 binary16 format Not-a-Number encoding. An implementation must always choose the same encoding for each implementation distinguishable *NaN* value.</ins>
+    1. Else if _type_ is ~Float32~, then
+      1. Let _rawBytes_ be a List whose elements are the 4 bytes that are the result of converting _value_ to IEEE 754-2019 binary32 format using roundTiesToEven mode. The bytes are arranged in little endian order. If _value_ is *NaN*, _rawBytes_ may be set to any implementation chosen IEEE 754-2019 binary32 format Not-a-Number encoding. An implementation must always choose the same encoding for each implementation distinguishable *NaN* value.
+    1. Else if _type_ is ~Float64~, then
+      1. Let _rawBytes_ be a List whose elements are the 8 bytes that are the IEEE 754-2019 binary64 format encoding of _value_. The bytes are arranged in little endian order. If _value_ is *NaN*, _rawBytes_ may be set to any implementation chosen IEEE 754-2019 binary64 format Not-a-Number encoding. An implementation must always choose the same encoding for each implementation distinguishable *NaN* value.
+    1. Else,
+      1. Let _n_ be the Element Size value specified in <emu-xref href="#table-the-typedarray-constructors"></emu-xref> for Element Type _type_.
+      1. Let _convOp_ be the abstract operation named in the Conversion Operation column in <emu-xref href="#table-the-typedarray-constructors"></emu-xref> for Element Type _type_.
+      1. Let _intValue_ be ℝ(_convOp_(_value_)).
+      1. If _intValue_ ≥ 0, then
+        1. Let _rawBytes_ be a List whose elements are the _n_-byte binary encoding of _intValue_. The bytes are ordered in little endian order.
+      1. Else,
+        1. Let _rawBytes_ be a List whose elements are the _n_-byte binary two's complement encoding of _intValue_. The bytes are ordered in little endian order.
+    1. If _isLittleEndian_ is *false*, reverse the order of the elements of _rawBytes_.
+    1. Return _rawBytes_.
+  </emu-alg>
+</emu-clause>
+
+<emu-clause id="sec-properties-of-the-dataview-prototype-object">
+  <h1>Properties of the DataView Prototype Object</h1>
+  <p>The following two subclauses are inserted.</p>
+
+  <emu-clause id="sec-dataview.prototype.getfloat16">
+    <h1><ins>DataView.prototype.getFloat16 ( _byteOffset_ [ , _littleEndian_ ] )</ins></h1>
+    <p>This method performs the following steps when called:</p>
+    <emu-alg>
+      1. Let _v_ be the *this* value.
+      1. If _littleEndian_ is not present, set _littleEndian_ to *false*.
+      1. Return ? GetViewValue(_v_, _byteOffset_, _littleEndian_, ~Float16~).
+    </emu-alg>
+  </emu-clause>
+
+  <emu-clause id="sec-dataview.prototype.setfloat16">
+    <h1><ins>DataView.prototype.setFloat16 ( _byteOffset_, _value_ [ , _littleEndian_ ] )</ins></h1>
+    <p>This method performs the following steps when called:</p>
+    <emu-alg>
+      1. Let _v_ be the *this* value.
+      1. If _littleEndian_ is not present, set _littleEndian_ to *false*.
+      1. Return ? SetViewValue(_v_, _byteOffset_, _littleEndian_, ~Float16~, _value_).
+    </emu-alg>
+  </emu-clause>
+</emu-clause>
