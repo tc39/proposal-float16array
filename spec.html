@@ -10,7 +10,7 @@ contributors: Kevin Gibbons
 
 <div id="metadata-block">
   <h1>Contributing to this Proposal</h1>
-  <p>You can discuss this proposal [on GitHub](https://github.com/tc39/proposal-float16array).</p>
+  <p>You can discuss this proposal <a href="https://github.com/tc39/proposal-float16array">on GitHub</a>.</p>
 </div>
 
 <emu-clause id="sec-proposal-intro">
@@ -221,7 +221,7 @@ contributors: Kevin Gibbons
           <ins>~Float16~</ins>
         </td>
         <td>
-          2
+          <ins>2</ins>
         </td>
         <td>
         </td>
@@ -315,7 +315,7 @@ contributors: Kevin Gibbons
   <p>The algorithm below is modified by the addition of a case for ~Float16~.</p>
   <emu-alg>
     1. <ins>If _type_ is ~Float16~, then</ins>
-      1. <ins>Let _rawBytes_ be a List whose elements are the 4 bytes that are the result of converting _value_ to IEEE 754-2019 binary16 format using roundTiesToEven mode. The bytes are arranged in little endian order. If _value_ is *NaN*, _rawBytes_ may be set to any implementation chosen IEEE 754-2019 binary16 format Not-a-Number encoding. An implementation must always choose the same encoding for each implementation distinguishable *NaN* value.</ins>
+      1. <ins>Let _rawBytes_ be a List whose elements are the 2 bytes that are the result of converting _value_ to IEEE 754-2019 binary16 format using roundTiesToEven mode. The bytes are arranged in little endian order. If _value_ is *NaN*, _rawBytes_ may be set to any implementation chosen IEEE 754-2019 binary16 format Not-a-Number encoding. An implementation must always choose the same encoding for each implementation distinguishable *NaN* value.</ins>
     1. Else if _type_ is ~Float32~, then
       1. Let _rawBytes_ be a List whose elements are the 4 bytes that are the result of converting _value_ to IEEE 754-2019 binary32 format using roundTiesToEven mode. The bytes are arranged in little endian order. If _value_ is *NaN*, _rawBytes_ may be set to any implementation chosen IEEE 754-2019 binary32 format Not-a-Number encoding. An implementation must always choose the same encoding for each implementation distinguishable *NaN* value.
     1. Else if _type_ is ~Float64~, then
