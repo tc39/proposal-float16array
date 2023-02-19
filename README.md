@@ -18,6 +18,10 @@ Spec text is available [here](https://tc39.es/proposal-float16array/).
 - Useful for GPU operations, where full precision often isn't necessary and memory constraints are serious.
   - WebGPU [supports float16](https://github.com/gpuweb/gpuweb/issues/2512). It exposes/consumes raw ArrayBuffers. When those contain 32-bit floats, [the pattern](https://gpuweb.github.io/gpuweb/explainer/#example-eed014f1) is to wrap the buffer in `new Float32Array(...)`; that doesn't work when they contain 16-bit floats.
   - [Increasingly relevant](https://github.com/huggingface/blog/blob/main/stable_diffusion.md) with new tools like Stable Diffusion, where full-precision representations don't fit in VRAM on many machines.
+- WebGL/WebGL2 support float16.
+  - WebGL's `OES_texture_half_float` extension and WebGL2 [support float16 texture](https://registry.khronos.org/webgl/extensions/OES_texture_half_float/), and also both `EXT_color_buffer_half_float` extensions [support float16 render target](https://registry.khronos.org/webgl/extensions/EXT_color_buffer_half_float/). They expose/consume Uint16Arrays; that is not easy to handle.
+- ARM and IA-32 and Intel® 64 architectures support float16 intrinsics.
+  - In the C++23 specification, [`std::float16_t` will be supported](https://en.cppreference.com/w/cpp/types/floating-point) to call the CPU instructions.
 - Faking it in userland has [serious performance costs](https://github.com/petamoriken/float16/issues/781).
 
 ## Proposal
