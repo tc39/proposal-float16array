@@ -27,3 +27,7 @@ Spec text is available [here](https://tc39.es/proposal-float16array/).
 ## Proposal
 
 This would add a new kind of TypedArray, `Float16Array`, to complement the existing `Float32Array` and `Float64Array`. It would also add two new methods on `DataView` for reading and setting float16 values, as `getFloat16` and `setFloat16`, to complement the existing similar methods for working with full and double precision floats.
+
+## Userland
+
+[@petramoriken](https://github.com/petamoriken) has [a package implementing `Float16Array`](https://github.com/petamoriken/float16) which gets 100k+ downloads/week [on npm](https://www.npmjs.com/package/@petamoriken/float16). See that repository for examples of some of the limitations and downsides of trying to do this purely in userland - notably the impossibility of integrating correctly with other web platform features like `WebGL`'s `HALF_FLOAT` buffers and `structuredClone`.
