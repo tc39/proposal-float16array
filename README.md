@@ -6,9 +6,9 @@ A proposal to add float16 (aka half-precision or binary16) TypedArrays to JavaSc
 
 Authors: Kevin Gibbons
 
-Champions: Leo Balter
+Champions: Leo Balter, Kevin Gibbons
 
-This proposal is at Stage 1 of [The TC39 Process](https://tc39.es/process-document/).
+This proposal is at Stage 1 of [The TC39 Process](https://tc39.es/process-document/). It will be presented to the committee for stage 2 or 3 at [the March meeting](https://github.com/tc39/agendas/blob/main/2023/03.md).
 
 Spec text is available [here](https://tc39.es/proposal-float16array/).
 
