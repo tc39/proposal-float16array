@@ -8,7 +8,7 @@ Authors: Kevin Gibbons
 
 Champions: Leo Balter, Kevin Gibbons
 
-This proposal is at Stage 1 of [The TC39 Process](https://tc39.es/process-document/). It will be presented to the committee for stage 2 or 3 at [the March meeting](https://github.com/tc39/agendas/blob/main/2023/03.md).
+This proposal is at Stage 2 of [The TC39 Process](https://tc39.es/process-document/) as of the March 2023 meeting. Current it awaits confirmation from engines that it will be feasible to implement, at which point it will be presented for stage 3.
 
 Spec text is available [here](https://tc39.es/proposal-float16array/).
 
@@ -26,7 +26,7 @@ Spec text is available [here](https://tc39.es/proposal-float16array/).
 
 ## Proposal
 
-This would add a new kind of TypedArray, `Float16Array`, to complement the existing `Float32Array` and `Float64Array`. It would also add two new methods on `DataView` for reading and setting float16 values, as `getFloat16` and `setFloat16`, to complement the existing similar methods for working with full and double precision floats.
+This would add a new kind of TypedArray, `Float16Array`, to complement the existing `Float32Array` and `Float64Array`. It would also add two new methods on `DataView` for reading and setting float16 values, as `getFloat16` and `setFloat16`, to complement the existing similar methods for working with full and double precision floats, as well as `Math.f16round`, to complement the existing `Math.fround`.
 
 ## Userland
 
