@@ -8,9 +8,13 @@ Authors: Kevin Gibbons
 
 Champions: Leo Balter, Kevin Gibbons
 
-This proposal is at Stage 2 of [The TC39 Process](https://tc39.es/process-document/) as of the March 2023 meeting. Current it awaits confirmation from engines that it will be feasible to implement, at which point it will be presented for stage 3.
+This proposal is at Stage 3 of [The TC39 Process](https://tc39.es/process-document/) as of the May 2023 meeting. It awaits implementations.
 
 Spec text is available [here](https://tc39.es/proposal-float16array/).
+
+## Implementations
+
+This proposal is ready for engines to implement and ship. See [this issue](https://github.com/tc39/proposal-float16array/issues/7) for current status of implementations.
 
 ## Motivation
 
