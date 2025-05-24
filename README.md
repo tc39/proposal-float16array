@@ -8,7 +8,7 @@ Authors: Kevin Gibbons
 
 Champions: Leo Balter, Kevin Gibbons
 
-This proposal is at Stage 3 of [The TC39 Process](https://tc39.es/process-document/) as of the May 2023 meeting. It awaits implementations.
+This proposal is at Stage 4 of [the TC39 process](https://tc39.es/process-document/) as of the February 2025 meeting: it is finished, has [landed in ecma262](https://github.com/tc39/ecma262/pull/3532), and [is shipping in browsers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float16Array). Any further discussion should happen [elsewhere](https://github.com/tc39/ecma262/blob/main/CONTRIBUTING.md).
 
 Spec text is available [here](https://tc39.es/proposal-float16array/).
 
